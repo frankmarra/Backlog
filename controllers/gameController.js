@@ -53,11 +53,29 @@ const updateUserGames = async (req, res) => {
     const game = await Game.updateOne(
       { _id: req.params.gameId },
       {
-        $addToSet: { gameUsers: req.params.userId }
+        $addToSet: {
+          gameUsers: { user: req.params.userId, status: 'Not Started' }
+        }
       }
     )
     return res.status(200).json({ game })
     return res.status(404).send('Game does not exist')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const deleteUserGame = async (req, res) => {
+  try {
+    const game = await Game.updateOne(
+      { _id: req.params.gameId },
+      {
+        $pull: {
+          gameUsers: { user: req.params.userId }
+        }
+      }
+    )
+    return res.status(200).json({ game })
   } catch (error) {
     return res.status(500).send(error.message)
   }
@@ -100,6 +118,7 @@ module.exports = {
   createGame,
   createNote,
   getAllGames,
+  deleteUserGame,
   getGame,
   getAllUsers,
   updateUserGames,

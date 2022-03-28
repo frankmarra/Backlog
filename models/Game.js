@@ -9,7 +9,12 @@ const Game = new Schema(
     gameBackgroundImage: { type: String, required: true },
     gameDeveloper: [{ type: String, required: true }],
     gameDataId: { type: String, required: true },
-    gameUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    gameUsers: [
+      {
+        user: { type: Schema.Types.ObjectId, ref: 'User' },
+        status: { type: String }
+      }
+    ]
   },
   { timestamps: true }
 )

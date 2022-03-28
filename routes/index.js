@@ -12,6 +12,8 @@ router.get('/users/:userId/games', gameControllers.getAllUserGames)
 
 router.put('/games/:gameId/:userId', gameControllers.updateUserGames)
 
+router.delete('/games/:gameId/:userId', gameControllers.deleteUserGame)
+
 router.post('/games', gameControllers.createGame)
 
 router.get('/games', gameControllers.getAllGames)

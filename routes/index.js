@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const gameControllers = require('../controllers/gameController')
 const userControllers = require('../controllers/userControllers')
+const noteControllers = require('../controllers/noteControllers')
 const router = Router()
 
 router.get('/', (req, res) => res.send('This is the root'))
@@ -23,12 +24,12 @@ router.get('/games', gameControllers.getAllGames)
 
 router.get('/games/:gameId', gameControllers.getGame)
 
-router.post('/notes/:userId/:gameId', gameControllers.createNote)
+router.post('/notes/:userId/:gameId', noteControllers.createNote)
 
-router.put('/notes/:noteId', gameControllers.updateNote)
+router.put('/notes/:noteId', noteControllers.updateNote)
 
-router.get('/notes/:userId/:gameId', gameControllers.getNotesByGame)
+router.get('/notes/:userId/:gameId', noteControllers.getNotesByGame)
 
-router.delete('/notes/:noteId', gameControllers.deleteNote)
+router.delete('/notes/:noteId', noteControllers.deleteNote)
 
 module.exports = router

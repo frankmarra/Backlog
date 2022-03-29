@@ -1,4 +1,4 @@
-const { User } = require('../models/Index')
+const { User, Game } = require('../models/Index')
 
 const createUser = async (req, res) => {
   try {

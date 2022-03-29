@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [userName, setUserName] = useState('')
+  const [userList, setUserList] = useState([])
   const [userId, setUserId] = useState('')
+  let navigate = useNavigate()
 
   useEffect(() => {
     document.title = 'Backlog Login'
   })
-  // const backLogin = (userId) => {
-  //   setUserId(userId)(<Link to={`/users/${userId}`} state={userId} />)
-  // }
+
   const handleUserNameChange = (e) => {
     e.preventDefault()
-    setUserName(e.targe.value)
+    setUserName(e.target.value)
   }
 
   const handleOnSubmit = async (e) => {
@@ -22,12 +22,13 @@ const Login = () => {
       console.log('please enter a user name')
     }
     e.preventDefault()
-    const users = await axios.get(`http://localhost:3001/api/users`)
-    console.log(users)
-    users.forEach((user) => {
-      if (user.name === userName) {
-        // backLogin(user._id)
-        console.log(user)
+    const response = await axios.get(`http://localhost:3001/api/users`)
+    setUserList(response.data.users)
+    userList.forEach((user) => {
+      if (user.userName === userName) {
+        setUserId(user._id)
+        console.log(userId)
+        navigate(`/users/${userId}`)
       }
     })
   }

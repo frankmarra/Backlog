@@ -1,16 +1,17 @@
 const { Router } = require('express')
 const gameControllers = require('../controllers/gameController')
+const userControllers = require('../controllers/userControllers')
 const router = Router()
 
 router.get('/', (req, res) => res.send('This is the root'))
 
-router.post('/users', gameControllers.createUser)
+router.post('/users', userControllers.createUser)
 
-router.get('/users', gameControllers.getAllUsers)
+router.get('/users', userControllers.getAllUsers)
 
-router.get('/users/:userId/games', gameControllers.getAllUserGames)
+router.get('/users/:userId/games', userControllers.getAllUserGames)
 
-router.put('/users/:userId/:gameId', gameControllers.updateUserGameStatus)
+router.put('/users/:userId/:gameId', userControllers.updateUserGameStatus)
 
 router.put('/games/:gameId/:userId', gameControllers.updateUserGames)
 

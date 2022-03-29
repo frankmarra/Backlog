@@ -1,14 +1,4 @@
-const { Game, Note, User } = require('../models/Index')
-
-const createUser = async (req, res) => {
-  try {
-    const user = await new User(req.body)
-    await user.save()
-    return res.status(201).json({ user })
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
+const { Game, Note } = require('../models/Index')
 
 const createGame = async (req, res) => {
   try {
@@ -20,68 +10,10 @@ const createGame = async (req, res) => {
   }
 }
 
-const createNote = async (req, res) => {
-  try {
-    const note = await new Note(req.body)
-    await note.save()
-    return res.status(201).json({ note })
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
-
-const updateNote = async (req, res) => {
-  try {
-    const note = await Note.updateOne(
-      { _id: req.params.noteId },
-      {
-        $set: { noteText: req.body.noteText }
-      }
-    )
-    return res.status(200).json({ note })
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
-const getNotesByGame = async (req, res) => {
-  try {
-    const notes = await Note.find()
-    let gameNotes = []
-    notes.forEach((note) => {
-      if (note.user == req.params.userId && note.game == req.params.gameId) {
-        gameNotes.push(note)
-      }
-    })
-    if (gameNotes) {
-      return res.status(200).json({ gameNotes })
-    }
-    return res.status(404).send('Notes for this game do not exist')
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
-
-const deleteNote = async (req, res) => {
-  try {
-    const note = await Note.findByIdAndDelete(req.params.noteId)
-    return res.status(200).send('Note Deleted')
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
 const getAllGames = async (req, res) => {
   try {
     const games = await Game.find()
     return res.status(200).json({ games })
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
-
-const getAllUsers = async (req, res) => {
-  try {
-    const users = await User.find()
-    return res.status(200).json({ users })
   } catch (error) {
     return res.status(500).send(error.message)
   }
@@ -97,22 +29,6 @@ const updateUserGames = async (req, res) => {
         }
       }
     )
-    return res.status(200).json({ game })
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
-
-const updateUserGameStatus = async (req, res) => {
-  try {
-    const game = await Game.findById(req.params.gameId)
-    game.gameUsers.forEach((user) => {
-      if (user.user == req.params.userId) {
-        user.status = req.body.status
-      }
-    })
-    await game.save()
-
     return res.status(200).json({ game })
   } catch (error) {
     return res.status(500).send(error.message)
@@ -147,38 +63,10 @@ const getGame = async (req, res) => {
   }
 }
 
-const getAllUserGames = async (req, res) => {
-  try {
-    const games = await Game.find()
-    let userGames = []
-    games.forEach((game) => {
-      game.gameUsers.forEach((user) => {
-        if (user.user == req.params.userId) {
-          userGames.push(game)
-        }
-      })
-    })
-    if (userGames) {
-      return res.status(200).json({ userGames })
-    }
-    return res.status(404).send('You have no games.')
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
-
 module.exports = {
-  createUser,
   createGame,
-  createNote,
-  updateNote,
-  getNotesByGame,
-  deleteNote,
   getAllGames,
   deleteUserGame,
   getGame,
-  getAllUsers,
-  updateUserGames,
-  updateUserGameStatus,
-  getAllUserGames
+  updateUserGames
 }

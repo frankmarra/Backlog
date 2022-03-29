@@ -52,7 +52,6 @@ const Home = () => {
   const showGame = (gameId) => {
     navigate(`/users/${user.userId}/games/${gameId}`)
   }
-  // onClick={() => showGame(game._id)}
   return (
     <div>
       <section className="container">

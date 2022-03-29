@@ -10,6 +10,18 @@ const createUser = async (req, res) => {
   }
 }
 
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId)
+    if (user) {
+      return res.status(200).json({ user })
+    }
+    return res.status(404).send('User not found')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find()
@@ -57,6 +69,7 @@ const getAllUserGames = async (req, res) => {
 
 module.exports = {
   createUser,
+  getUser,
   getAllUsers,
   updateUserGameStatus,
   getAllUserGames

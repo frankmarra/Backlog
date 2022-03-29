@@ -15,7 +15,13 @@ const Login = () => {
     e.preventDefault()
     setUserName(e.target.value)
   }
-
+  const navToUser = (userList) => {
+    userList.forEach((user) => {
+      if (user.userName === userName) {
+        navigate(`/users/${user._id}`)
+      }
+    })
+  }
   const handleOnSubmit = async (e) => {
     if (userName === '') {
       console.log('please enter a user name')
@@ -23,11 +29,7 @@ const Login = () => {
     e.preventDefault()
     const response = await axios.get(`http://localhost:3001/api/users`)
     setUserList(response.data.users)
-    userList.forEach((user) => {
-      if (user.userName === userName) {
-        navigate(`/users/${user._id}`)
-      }
-    })
+    navToUser(userList)
   }
   return (
     <form onSubmit={handleOnSubmit}>

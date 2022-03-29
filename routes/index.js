@@ -10,6 +10,8 @@ router.post('/users', userControllers.createUser)
 
 router.get('/users', userControllers.getAllUsers)
 
+router.get('/users/:userId', userControllers.getUser)
+
 router.get('/users/:userId/games', userControllers.getAllUserGames)
 
 router.put('/users/:userId/:gameId', userControllers.updateUserGameStatus)

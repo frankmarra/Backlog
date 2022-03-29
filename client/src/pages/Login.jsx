@@ -9,7 +9,9 @@ const Login = () => {
   useEffect(() => {
     document.title = 'Backlog Login'
   })
-
+  // const backLogin = (userId) => {
+  //   setUserId(userId)(<Link to={`/users/${userId}`} state={userId} />)
+  // }
   const handleUserNameChange = (e) => {
     e.preventDefault()
     setUserName(e.targe.value)
@@ -21,9 +23,11 @@ const Login = () => {
     }
     e.preventDefault()
     const users = await axios.get(`http://localhost:3001/api/users`)
+    console.log(users)
     users.forEach((user) => {
       if (user.name === userName) {
-        setUserId(user._id)(<Link to={`/users/${userId}`} state={userId} />)
+        // backLogin(user._id)
+        console.log(user)
       }
     })
   }

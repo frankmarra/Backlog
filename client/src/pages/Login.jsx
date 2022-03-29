@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
   const [userName, setUserName] = useState('')
   const [userList, setUserList] = useState([])
-  const [userId, setUserId] = useState('')
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -26,9 +25,7 @@ const Login = () => {
     setUserList(response.data.users)
     userList.forEach((user) => {
       if (user.userName === userName) {
-        setUserId(user._id)
-        console.log(userId)
-        navigate(`/users/${userId}`)
+        navigate(`/users/${user._id}`)
       }
     })
   }

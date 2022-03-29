@@ -2,8 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Login from './pages/Login'
-
-// <Route path="/games/:gameId" element={<GamePage />}/>
+import GameDetails from './pages/GameDetails'
 
 function App() {
   return (
@@ -13,6 +12,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/users/:userId" element={<Home />} />
+          <Route
+            path="/users/:userId/games/:gameId"
+            element={<GameDetails />}
+          />
         </Routes>
       </main>
     </div>

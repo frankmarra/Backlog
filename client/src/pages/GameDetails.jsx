@@ -19,33 +19,39 @@ const GameDetails = () => {
       console.log(gameDetails)
     }
 
-    getGameDetails()
-  }, [])
-
-  useEffect(() => {
     const getAllGames = async () => {
       const response = await axios.get(`http://localhost:3001/api/games`)
       setAllGames(response.data.games)
     }
-    getAllGames()
+
     let foundGame = 0
+
     allGames.forEach((game) => {
-      if (game.gameDataId === gameId) {
+      if (game.gameDataId == gameId) {
         foundGame++
       }
     })
-    if (foundGame === 0) {
-      console.log('no game found')
-      const newGame = {
-        gameName: gameDetails.name,
-        gameReleaseDate: gameDetails.released,
-        gameDescription: gameDetails.description_raw,
-        gameGenre: gameDetails.genres,
-        gameBackgroundImage: gameDetails.background_image,
-        gameDeveloper: gameDetails.developers,
-        gameDataId: gameDetails.id
+
+    const addGame = async () => {
+      console.log(foundGame)
+      if (foundGame === 0) {
+        const newGame = {
+          gameName: gameDetails.name,
+          gameReleaseDate: gameDetails.released,
+          gameDescription: gameDetails.description_raw,
+          gameGenre: gameDetails.genres,
+          gameBackgroundImage: gameDetails.background_image,
+          gameDataId: gameDetails.id
+        }
+        axios
+          .post(`http://localhost:3001/api/games`, newGame)
+          .catch((err) => console.log(err))
       }
     }
+
+    getGameDetails()
+    getAllGames()
+    addGame()
   }, [])
   return (
     <div className="game-content-wrapper">

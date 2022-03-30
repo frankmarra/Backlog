@@ -1,113 +1,135 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+// import axios from 'axios'
+// import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { rawGKey } from '../globals'
+// import { rawGKey } from '../globals'
 import { Link } from 'react-router-dom'
+import GameDetail from '../components/GameDetail'
 
 const GameDetails = () => {
-  const [gameDetails, setGameDetails] = useState(null)
-  const [allGames, setAllGames] = useState([])
-  const [backlogId, setBacklogId] = useState(null)
-  const [selectedGame, setSelectedGame] = useState(null)
+  // const [gameDetails, setGameDetails] = useState(null)
+  // const [allGames, setAllGames] = useState([])
+  // const [backlogId, setBacklogId] = useState(null)
+  // const [selectedGame, setSelectedGame] = useState(null)
+  // const [isUserGame, setIsUserGame] = useState(null)
 
-  let { userId, gameId } = useParams()
-  let userGame = false
+  let { userId } = useParams()
+  // let foundGame = 0
 
-  useEffect(() => {
-    const getGameDetails = async () => {
-      const response = await axios.get(
-        `https://api.rawg.io/api/games/${gameId}?key=${rawGKey}`
-      )
-      setGameDetails(response.data)
-    }
+  // useEffect(() => {
+  //   getGameDetails()
+  //   getAllGames()
+  // }, [])
 
-    const getAllGames = async () => {
-      const response = await axios.get(`http://localhost:3001/api/games`)
-      setAllGames(response.data.games)
-    }
+  // useEffect(() => {
+  //   if (gameDetails && allGames) {
+  //     setTimeout(() => {
+  //       addGame()
+  //     }, 1000)
+  //   }
+  // }, [gameDetails])
+  // useEffect(() => {
+  //   if (isUserGame) {
+  //     setTimeout(() => {
+  //       determineUserGame()
+  //     }, 1500)
+  //   }
+  // }, [isUserGame])
 
-    getGameDetails()
-    getAllGames()
-  }, [])
+  // const getAllGames = async () => {
+  //   const response = await axios.get(`http://localhost:3001/api/games`)
+  //   setAllGames(response.data.games)
+  // }
 
-  useEffect(() => {
-    let foundGame = 0
-    const addGame = async () => {
-      allGames.forEach((game) => {
-        if (game.gameDataId == gameId) {
-          foundGame++
-          setBacklogId(game._id)
-        }
-      })
-      if (foundGame === 0) {
-        const newGame = {
-          gameName: gameDetails.name,
-          gameReleaseDate: gameDetails.released,
-          gameDescription: gameDetails.description_raw,
-          gameBackgroundImage: gameDetails.background_image,
-          gameDataId: gameDetails.id
-        }
+  // const getGameDetails = async () => {
+  //   const response = await axios.get(
+  //     `https://api.rawg.io/api/games/${gameId}?key=${rawGKey}`
+  //   )
+  //   setGameDetails(response.data)
+  // }
 
-        await axios
-          .post(`http://localhost:3001/api/games`, newGame)
-          .catch((err) => console.log(err))
-      }
-    }
+  // const addGame = async () => {
+  //   allGames.forEach((game) => {
+  //     if (game.gameDataId == gameId) {
+  //       foundGame++
+  //       setBacklogId(game._id)
+  //       if (game.gameUsers.user == userId) {
+  //         setIsUserGame(true)
+  //         console.log('user game?: ', isUserGame)
+  //       }
+  //     }
+  //   })
+  //   console.log('game: ', foundGame)
+  //   console.log('user ID: ', userId)
+  //   if (foundGame === 0) {
+  //     const newGame = {
+  //       gameName: gameDetails.name,
+  //       gameReleaseDate: gameDetails.released,
+  //       gameDescription: gameDetails.description_raw,
+  //       gameBackgroundImage: gameDetails.background_image,
+  //       gameDataId: gameDetails.id
+  //     }
 
-    addGame()
-  }, [gameDetails])
+  //     await axios
+  //       .post(`http://localhost:3001/api/games`, newGame)
+  //       .catch((err) => console.log(err))
+  //   }
+  // }
 
-  useEffect(() => {
-    const determineUserGame = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/api/games/${backlogId}`
-      )
-      setSelectedGame(response.data.game.gameUsers)
-      if (selectedGame.user == userId) {
-        userGame = true
-      }
-    }
-    determineUserGame()
-  }, [userGame])
-  const addGameToUser = async () => {
-    const newGame = { status: 'Not Started' }
-    axios
-      .put(`http://localhost:3001/api/games/${backlogId}/${userId}`)
-      .catch((err) => console.log(err))
-    userGame = true
-  }
+  // const determineUserGame = async () => {
+  //   console.log('backlog Id: ', backlogId)
+  //   const response = await axios.get(
+  //     `http://localhost:3001/api/games/${backlogId}`
+  //   )
+  //   setSelectedGame(response.data.game.gameUsers)
+  //   console.log('selected game users: ', selectedGame)
+  //   setTimeout(() => {
+  //     selectedGame.forEach((user) => {
+  //       if (user == userId) {
+  //         setIsUserGame(true)
+  //       }
+  //     })
+  //   }, 1000)
+  // }
 
-  const deleteGameFromUser = async () => {
-    axios.delete(`http://localhost3001/api/games/${backlogId}/${userId}`)
-    userGame = false
-  }
+  // const addGameToUser = async () => {
+  //   axios
+  //     .put(`http://localhost:3001/api/games/${backlogId}/${userId}`)
+  //     .catch((err) => console.log(err))
+  //   setIsUserGame(true)
+  // }
 
-  console.log(userGame)
+  // const deleteGameFromUser = async () => {
+  //   axios.delete(`http://localhost3001/api/games/${backlogId}/${userId}`)
+  //   setIsUserGame(false)
+  // }
+
+  // {gameDetails && (
+  //   <div className="game-content">
+  //     <div className="image-container">
+  //       <img src={gameDetails.background_image} alt={gameDetails.name} />
+  //     </div>
+  //     <div className="game-info">
+  //       <h2>{gameDetails.name}</h2>
+  //       <h3>Released: {gameDetails.released}</h3>
+  //       <h3>Rating: {gameDetails.rating}</h3>
+  //       <p>{gameDetails.description_raw}</p>
+  //     </div>
+  //   </div>
+  // )}
+  // {isUserGame ? (
+  //   <div className="crud-buttons">
+  //     <h4>This game is in your library!</h4>
+  //     <button onClick={() => deleteGameFromUser()}>Delete?</button>
+  //   </div>
+  // ) : (
+  //   <div className="crud-buttons" onClick={() => addGameToUser()}>
+  //     <button>Add To Your Backlog!</button>
+  //   </div>
+  // )}
+  // console.log('is user game(2nd check)": ', isUserGame)
   return (
     <div className="game-content-wrapper">
-      {gameDetails && (
-        <div className="game-content">
-          <div className="image-container">
-            <img src={gameDetails.background_image} alt={gameDetails.name} />
-          </div>
-          <div className="game-info">
-            <h2>{gameDetails.name}</h2>
-            <h3>Released: {gameDetails.released}</h3>
-            <h3>Rating: {gameDetails.rating}</h3>
-            <p>{gameDetails.description_raw}</p>
-          </div>
-        </div>
-      )}
-      {userGame ? (
-        <div className="crud-buttons">
-          <h4>This game is in your library!</h4>
-          <button onClick={() => deleteGameFromUser()}>Delete?</button>
-        </div>
-      ) : (
-        <div className="crud-buttons" onClick={() => addGameToUser()}>
-          <button>Add To Your Backlog!</button>
-        </div>
-      )}
+      <GameDetail />
 
       <Link to={`/users/${userId}`}>Back</Link>
     </div>

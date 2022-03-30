@@ -16,7 +16,6 @@ const GameDetails = () => {
         `https://api.rawg.io/api/games/${gameId}?key=${rawGKey}`
       )
       setGameDetails(response.data)
-      console.log(gameDetails)
     }
 
     const getAllGames = async () => {
@@ -24,35 +23,36 @@ const GameDetails = () => {
       setAllGames(response.data.games)
     }
 
+    getGameDetails()
+    getAllGames()
+  }, [])
+
+  useEffect(() => {
     let foundGame = 0
-
-    allGames.forEach((game) => {
-      if (game.gameDataId == gameId) {
-        foundGame++
-      }
-    })
-
     const addGame = async () => {
+      allGames.forEach((game) => {
+        if (game.gameDataId == gameId) {
+          foundGame++
+        }
+      })
       console.log(foundGame)
       if (foundGame === 0) {
         const newGame = {
           gameName: gameDetails.name,
           gameReleaseDate: gameDetails.released,
           gameDescription: gameDetails.description_raw,
-          gameGenre: gameDetails.genres,
           gameBackgroundImage: gameDetails.background_image,
           gameDataId: gameDetails.id
         }
+
         axios
           .post(`http://localhost:3001/api/games`, newGame)
           .catch((err) => console.log(err))
       }
     }
 
-    getGameDetails()
-    getAllGames()
     addGame()
-  }, [])
+  }, [gameDetails])
   return (
     <div className="game-content-wrapper">
       {gameDetails && (

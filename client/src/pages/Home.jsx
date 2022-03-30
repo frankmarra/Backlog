@@ -76,17 +76,20 @@ const Home = () => {
               ))}
             </div>
           </div>
-          <div className="wrapper">
-            {userGames.map((game) => (
-              <div key={game._id}>
-                <GameCard
-                  id={game._id}
-                  name={game.gameName}
-                  image={game.gameBackgroundImage}
-                  showGame={showGame}
-                />
-              </div>
-            ))}
+          <h3>Games In Progress</h3>
+          <div className="in-progress-wrapper">
+            <div className="in-progress">
+              {userGames.map((game) => (
+                <div key={game.gameDataId}>
+                  <GameCard
+                    id={game.gameDataId}
+                    name={game.gameName}
+                    image={game.gameBackgroundImage}
+                    showGame={showGame}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -17,12 +17,13 @@ main {
 }
 .container {
   display: grid;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 5% 90% 5%;
   align-items: center;
   align-content: space-between;
   justify-items: center;
   background-color: #231773;
   height: 100vh;
+  color: #f2f2f2;
 }
 
 .content {
@@ -58,44 +59,47 @@ nav a {
 } */
 
 .search-results-wrapper {
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-snap-align: center;
-  scroll-behavior: smooth;
+  margin-top: 20px;
   display: grid;
-  gap: 5px;
-  overscroll-behavior-x: contain;
+  width: 90%;
   grid-column: 1 / -1;
-  /* grid-template-columns: inherit; */
+  grid-template-columns: inherit;
 }
 .search-results {
-  display: flex;
-  grid-column: 2;
-  justify-content: flex-start;
-  position: relative;
-}
-/* .search-results > div {
+  overflow-x: scroll;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
   scroll-snap-align: start;
-  flex-shrink: 0;
-  width: 150px;
-  height: 200px;
-  border-radius: 10px;
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 0.5s;
+  scroll-behavior: smooth;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-} */
-
+}
+.in-progress-wrapper {
+  margin: 20px;
+  display: grid;
+  width: 90%;
+  grid-column: 1 / -1;
+  grid-template-columns: inherit;
+}
+.in-progress {
+  overflow-x: scroll;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+  /* height: 250px; */
+  display: flex;
+  justify-content: flex-start;
+}
 .game-card {
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   flex-flow: column;
   text-align: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 250px;
-  width: 250px;
+  background-color: #acb0f2;
+  margin: 0 15px;
 }
 
 .img-wrapper img {

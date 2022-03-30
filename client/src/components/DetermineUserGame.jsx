@@ -6,7 +6,7 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
   const [isUserGame, setIsUserGame] = useState(false)
   const [user, setUser] = useState([])
   const [value, setValue] = useState('')
-  const [statusChangeMessage, setStatusChangeMessage] = useState('')
+  const [userStatus, setUserStatus] = useState('')
   let { userId } = useParams()
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
       if (user.user == userId) {
         setIsUserGame(true)
         setUser(user)
-        console.log(isUserGame)
+        setUserStatus(user.status)
       }
     })
   }, [])
@@ -24,6 +24,7 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
       .put(`http://localhost:3001/api/games/${backlogId}/${userId}`)
       .catch((err) => console.log(err))
     setIsUserGame(true)
+    setUserStatus('Not Started')
   }
 
   const deleteGameFromUser = async () => {
@@ -34,36 +35,36 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
     setValue(e.target.value)
   }
   const updateGameStatus = async (choice) => {
-    if (choice == user.status) {
-      setStatusChangeMessage('This is the current game status')
-    } else if (choice !== user.status && choice == 'Not Started') {
+    if (choice == userStatus) {
+      console.log('that is already the status.  choose again')
+    } else if (choice !== userStatus && choice == 'Not Started') {
       const response = await axios
         .put(`http://localhost:3001/api/users/${userId}/${backlogId}`, {
           status: 'Not Started'
         })
         .catch((err) => console.log(err))
-      setStatusChangeMessage(user.status)
-    } else if (choice !== user.status && choice == 'In Progress') {
+      setUserStatus('Not Started')
+    } else if (choice !== userStatus && choice == 'In Progress') {
       const response = await axios
         .put(`http://localhost:3001/api/users/${userId}/${backlogId}`, {
           status: 'In Progress'
         })
         .catch((err) => console.log(err))
-      setStatusChangeMessage(user.status)
-    } else if (choice !== user.status && choice == 'Completed') {
+      setUserStatus('In Progress')
+    } else if (choice !== userStatus && choice == 'Completed') {
       const response = await axios
         .put(`http://localhost:3001/api/users/${userId}/${backlogId}`, {
           status: 'Completed'
         })
         .catch((err) => console.log(err))
-      setStatusChangeMessage(user.status)
+      setUserStatus('Completed')
     }
   }
 
   return isUserGame ? (
     <div className="crud-buttons">
       <h4>This game is in your library!</h4>
-      <p>Game Status: {user.status}</p>
+      <p>Game Status: {userStatus}</p>
       <div className="drop-down-menu">
         <label>
           Update Status?
@@ -75,7 +76,6 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
         </label>
         <button onClick={() => updateGameStatus(value)}>Update!</button>
       </div>
-      <p>{statusChangeMessage}</p>
       <button onClick={() => deleteGameFromUser()}>Delete?</button>
     </div>
   ) : (

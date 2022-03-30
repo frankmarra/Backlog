@@ -76,12 +76,13 @@ const Home = () => {
               ))}
             </div>
           </div>
+          <h3>Games In Progress</h3>
           <div className="in-progress-wrapper">
             <div className="in-progress">
               {userGames.map((game) => (
-                <div key={game._id}>
+                <div key={game.gameDataId}>
                   <GameCard
-                    id={game._id}
+                    id={game.gameDataId}
                     name={game.gameName}
                     image={game.gameBackgroundImage}
                     showGame={showGame}

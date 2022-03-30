@@ -7,8 +7,11 @@ import { Link } from 'react-router-dom'
 const GameDetails = () => {
   const [gameDetails, setGameDetails] = useState(null)
   const [allGames, setAllGames] = useState([])
+  const [backlogId, setBacklogId] = useState(null)
+  const [selectedGame, setSelectedGame] = useState(null)
 
   let { userId, gameId } = useParams()
+  let userGame = false
 
   useEffect(() => {
     const getGameDetails = async () => {
@@ -33,9 +36,9 @@ const GameDetails = () => {
       allGames.forEach((game) => {
         if (game.gameDataId == gameId) {
           foundGame++
+          setBacklogId(game._id)
         }
       })
-      console.log(foundGame)
       if (foundGame === 0) {
         const newGame = {
           gameName: gameDetails.name,
@@ -45,7 +48,7 @@ const GameDetails = () => {
           gameDataId: gameDetails.id
         }
 
-        axios
+        await axios
           .post(`http://localhost:3001/api/games`, newGame)
           .catch((err) => console.log(err))
       }
@@ -53,6 +56,33 @@ const GameDetails = () => {
 
     addGame()
   }, [gameDetails])
+
+  useEffect(() => {
+    const determineUserGame = async () => {
+      const response = await axios.get(
+        `http://localhost:3001/api/games/${backlogId}`
+      )
+      setSelectedGame(response.data.game.gameUsers)
+      if (selectedGame.user == userId) {
+        userGame = true
+      }
+    }
+    determineUserGame()
+  }, [userGame])
+  const addGameToUser = async () => {
+    const newGame = { status: 'Not Started' }
+    axios
+      .put(`http://localhost:3001/api/games/${backlogId}/${userId}`)
+      .catch((err) => console.log(err))
+    userGame = true
+  }
+
+  const deleteGameFromUser = async () => {
+    axios.delete(`http://localhost3001/api/games/${backlogId}/${userId}`)
+    userGame = false
+  }
+
+  console.log(userGame)
   return (
     <div className="game-content-wrapper">
       {gameDetails && (
@@ -68,6 +98,17 @@ const GameDetails = () => {
           </div>
         </div>
       )}
+      {userGame ? (
+        <div className="crud-buttons">
+          <h4>This game is in your library!</h4>
+          <button onClick={() => deleteGameFromUser()}>Delete?</button>
+        </div>
+      ) : (
+        <div className="crud-buttons" onClick={() => addGameToUser()}>
+          <button>Add To Your Backlog!</button>
+        </div>
+      )}
+
       <Link to={`/users/${userId}`}>Back</Link>
     </div>
   )

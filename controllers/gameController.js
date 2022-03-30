@@ -25,7 +25,7 @@ const updateUserGames = async (req, res) => {
       { _id: req.params.gameId },
       {
         $addToSet: {
-          gameUsers: { user: req.params.userId, status: req.body.status }
+          gameUsers: { user: req.params.userId, status: 'Not Started' }
         }
       }
     )

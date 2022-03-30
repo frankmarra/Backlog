@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import FindUsers from './FindUsers'
 
 const AddGameToDB = ({ allGames, gameDetails }) => {
-  // const [isUserGame, setIsUserGame] = useState(null)
   const [backlogId, setBacklogId] = useState(null)
   let { userId, gameId } = useParams()
   useEffect(() => {
@@ -16,10 +15,6 @@ const AddGameToDB = ({ allGames, gameDetails }) => {
         if (game.gameDataId == gameId) {
           foundGame++
           setBacklogId(game._id)
-          // if (game.gameUsers.user == userId) {
-          //   setIsUserGame(true)
-          //   console.log('user game?: ', isUserGame)
-          // }
         }
       })
       console.log('game: ', foundGame)

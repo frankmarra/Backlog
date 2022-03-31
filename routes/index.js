@@ -28,9 +28,9 @@ router.get('/games/:gameId', gameControllers.getGame)
 
 router.post('/notes/:userId/:gameId', noteControllers.createNote)
 
-router.put('/notes/:noteId', noteControllers.updateNote)
-
 router.get('/notes/:userId/:gameId', noteControllers.getNotesByGame)
+
+router.put('/notes/:noteId', noteControllers.updateNote)
 
 router.delete('/notes/:noteId', noteControllers.deleteNote)
 

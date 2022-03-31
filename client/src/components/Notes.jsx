@@ -16,6 +16,7 @@ const Notes = ({ backlogId }) => {
         .catch((err) => console.log(err))
       console.log('UseEffect response: ', response)
       setUserNotes(response.data.note.noteText)
+      setNoteId(response.data.note._id)
     }
     getUserNotes()
     if (userNotes != '') {
@@ -24,7 +25,8 @@ const Notes = ({ backlogId }) => {
     }
   }, [userNotes])
 
-  const handleNoteCreate = async () => {
+  const handleNoteCreate = async (event) => {
+    event.preventDefault()
     const newNote = {
       user: userId,
       game: backlogId,
@@ -40,12 +42,21 @@ const Notes = ({ backlogId }) => {
     console.log('create note: ', hasNotes)
     console.log('noteID: ', noteId)
   }
-  const handleNoteUpdate = async () => {
+  const handleNoteUpdate = async (event) => {
+    event.preventDefault()
     const response = await axios
       .put(`http://localhost:3001/api/notes/${noteId}`, { noteText: noteText })
       .catch((err) => console.log(err))
     setUserNotes(noteText)
     console.log('update note: ', hasNotes)
+  }
+
+  const deleteNote = async () => {
+    const response = await axios
+      .delete(`http://localhost:3001/api/notes/${noteId}`)
+      .catch((err) => console.log(err))
+    setHasNotes(false)
+    setUserNotes('')
   }
   const handleChange = (event) => {
     setNoteText(event.target.value)
@@ -65,6 +76,13 @@ const Notes = ({ backlogId }) => {
         </textarea>
         <button type="submit">Save Note</button>
       </form>
+      <button
+        onClick={() => {
+          deleteNote()
+        }}
+      >
+        Delete Note?
+      </button>
     </div>
   ) : (
     <div className="note-wrapper">

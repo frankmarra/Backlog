@@ -14,6 +14,20 @@ router.get('/users/:userId', userControllers.getUser)
 
 router.get('/users/:userId/games', userControllers.getAllUserGames)
 
+router.get(
+  '/users/:userId/games/not_started',
+  userControllers.getAllUserGamesNotStarted
+)
+
+router.get(
+  '/users/:userId/games/in_progress',
+  userControllers.getAllUserGamesInProgress
+)
+router.get(
+  'users/:userId/games/completed',
+  userControllers.getAllUserGamesCompleted
+)
+
 router.put('/users/:userId/:gameId', userControllers.updateUserGameStatus)
 
 router.put('/games/:gameId/:userId', gameControllers.updateUserGames)

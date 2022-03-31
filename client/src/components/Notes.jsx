@@ -26,7 +26,7 @@ const Notes = ({ backlogId }) => {
   }, [userNotes])
 
   const handleNoteCreate = async (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     const newNote = {
       user: userId,
       game: backlogId,
@@ -43,7 +43,7 @@ const Notes = ({ backlogId }) => {
     console.log('noteID: ', noteId)
   }
   const handleNoteUpdate = async (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     const response = await axios
       .put(`http://localhost:3001/api/notes/${noteId}`, { noteText: noteText })
       .catch((err) => console.log(err))

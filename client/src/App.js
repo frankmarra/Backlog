@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import GameDetails from './pages/GameDetails'
 import CreateNewUser from './pages/CreateNewUser'
+import About from './pages/About'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             path="/users/:userId/games/:gameId"
             element={<GameDetails />}
           />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
     </div>

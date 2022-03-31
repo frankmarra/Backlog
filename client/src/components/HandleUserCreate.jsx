@@ -24,9 +24,7 @@ const HandleUserCreate = ({ userList }) => {
         .post('http://localhost:3001/api/users', newUser)
         .catch((err) => console.log(err))
       setUserId(response.data.user._id)
-      console.log('userId: ', userId)
       setUserCreated(true)
-      console.log('user Created: ', userCreated)
     }
   }
   const handleUserNameChange = (event) => {
@@ -41,7 +39,7 @@ const HandleUserCreate = ({ userList }) => {
       <button onClick={() => navigate(`/users/${userId}`)}>Your Backlog</button>
     </div>
   ) : (
-    <form onSubmit={handleOnSubmit}>
+    <form className="user-create-form" onSubmit={handleOnSubmit}>
       <div>
         <label>Choose a user name:</label>
         <input type="text" name="name" onChange={handleUserNameChange} />

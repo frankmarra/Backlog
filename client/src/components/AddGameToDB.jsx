@@ -5,7 +5,7 @@ import FindUsers from './FindUsers'
 
 const AddGameToDB = ({ allGames, gameDetails }) => {
   const [backlogId, setBacklogId] = useState(null)
-  let { userId, gameId } = useParams()
+  let { gameId } = useParams()
   useEffect(() => {
     const addGame = async () => {
       let foundGame = 0

@@ -75,9 +75,11 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
             <option value="Completed">Completed</option>
           </select>
         </label>
-        <button onClick={() => updateGameStatus(value)}>Update!</button>
+        <div className="update-status-button">
+          <button onClick={() => updateGameStatus(value)}>Update!</button>
+        </div>
+        <button onClick={() => deleteGameFromUser()}>Delete?</button>
       </div>
-      <button onClick={() => deleteGameFromUser()}>Delete?</button>
       <Notes backlogId={backlogId} />
     </div>
   ) : (

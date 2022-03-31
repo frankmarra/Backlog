@@ -15,7 +15,6 @@ const UserGamesInProgress = ({ user, showGame }) => {
     getUserGamesInProgress()
   }, [])
 
-  // <h3>Games In Progress</h3>
   return (
     <div className="in-progress-wrapper">
       <h2>Games In Progress</h2>

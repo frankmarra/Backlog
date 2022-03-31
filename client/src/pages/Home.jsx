@@ -38,8 +38,8 @@ const Home = () => {
     getUserGames()
   }, [])
 
-  const getSearchResults = async (e) => {
-    e.preventDefault()
+  const getSearchResults = async (event) => {
+    event.preventDefault()
     const response = await axios.get(
       `https://api.rawg.io/api/games?key=${rawGKey}&search=${searchQuery}`
     )
@@ -54,35 +54,7 @@ const Home = () => {
   const showGame = (gameId) => {
     navigate(`/users/${user.userId}/games/${gameId}`)
   }
-  // <h3>Games In Progress</h3>
-  // <div className="in-progress-wrapper">
-  //   <div className="in-progress">
-  //     {userGames.map((game) => (
-  //       <div key={game.gameDataId}>
-  //         <GameCard
-  //           id={game.gameDataId}
-  //           name={game.gameName}
-  //           image={game.gameBackgroundImage}
-  //           showGame={showGame}
-  //         />
-  //       </div>
-  //     ))}
-  //   </div>
-  // </div>
-  // <div className="not-started-wrapper">
-  //   <div className="not-started">
-  //     {userGamesNotStarted.map((game) => (
-  //       <div key={game.gameDataId}>
-  //         <GameCard
-  //           id={game.gameDataId}
-  //           name={game.gameName}
-  //           image={game.gameBackgroundImage}
-  //           showGame={showGame}
-  //         />
-  //       </div>
-  //     ))}
-  //   </div>
-  // </div>
+
   return (
     <div>
       <section className="container">

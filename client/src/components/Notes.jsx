@@ -14,19 +14,16 @@ const Notes = ({ backlogId }) => {
       const response = await axios
         .get(`http://localhost:3001/api/notes/${userId}/${backlogId}`)
         .catch((err) => console.log(err))
-      console.log('UseEffect response: ', response)
       setUserNotes(response.data.note.noteText)
       setNoteId(response.data.note._id)
     }
     getUserNotes()
     if (userNotes != '') {
-      console.log('useEffect:', hasNotes)
       setHasNotes(true)
     }
   }, [userNotes])
 
   const handleNoteCreate = async (event) => {
-    // event.preventDefault()
     const newNote = {
       user: userId,
       game: backlogId,
@@ -38,17 +35,12 @@ const Notes = ({ backlogId }) => {
     setNoteId(response.data.note._id)
     setUserNotes(noteText)
     setHasNotes(true)
-    console.log('note Text: ', noteText)
-    console.log('create note: ', hasNotes)
-    console.log('noteID: ', noteId)
   }
   const handleNoteUpdate = async (event) => {
-    // event.preventDefault()
     const response = await axios
       .put(`http://localhost:3001/api/notes/${noteId}`, { noteText: noteText })
       .catch((err) => console.log(err))
     setUserNotes(noteText)
-    console.log('update note: ', hasNotes)
   }
 
   const deleteNote = async () => {
@@ -61,7 +53,7 @@ const Notes = ({ backlogId }) => {
   const handleChange = (event) => {
     setNoteText(event.target.value)
   }
-  console.log('user note:', userNotes)
+
   return hasNotes ? (
     <div className="note-wrapper">
       <form onSubmit={handleNoteUpdate}>

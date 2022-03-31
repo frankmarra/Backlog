@@ -4,25 +4,25 @@ import { useNavigate } from 'react-router-dom'
 const HandleLogin = ({ userList }) => {
   const [userName, setUserName] = useState('')
   let navigate = useNavigate()
-  const handleUserNameChange = (e) => {
-    e.preventDefault()
-    setUserName(e.target.value)
+  const handleUserNameChange = (event) => {
+    event.preventDefault()
+    setUserName(event.target.value)
   }
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = async (event) => {
     if (userName === '') {
       console.log('please enter a user name')
     }
-    e.preventDefault()
+    event.preventDefault()
     userList.forEach((user) => {
-      if (user.userName === userName) {
+      if (user.userName === userName.toLowerCase()) {
         navigate(`/users/${user._id}`)
       }
     })
   }
 
   return (
-    <form onSubmit={handleOnSubmit}>
+    <form className="login-form" onSubmit={handleOnSubmit}>
       <label>
         Username:
         <input onChange={handleUserNameChange} type="text" name="username" />

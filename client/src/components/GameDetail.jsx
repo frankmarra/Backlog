@@ -16,7 +16,6 @@ const GameDetail = () => {
         `https://api.rawg.io/api/games/${gameId}?key=${rawGKey}`
       )
       setGameDetails(response.data)
-      console.log(gameDetails)
     }
     getGameDetails()
     const getAllGames = async () => {

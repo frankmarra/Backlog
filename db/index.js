@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 mongoose
   .connect('mongodb://127.0.01:27017/backlogDatabase')

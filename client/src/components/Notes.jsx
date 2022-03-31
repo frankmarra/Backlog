@@ -6,17 +6,22 @@ const Notes = ({ backlogId }) => {
   const [noteText, setNoteText] = useState('')
   const [userNotes, setUserNotes] = useState('')
   const [noteId, setNoteId] = useState(null)
+  const [hasNotes, setHasNotes] = useState(false)
   let { userId } = useParams()
 
   useEffect(() => {
     const getUserNotes = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/api/notes/${userId}/${backlogId}`
-      )
-      setUserNotes(response.data.gameNotes.noteText)
-      console.log(response)
+      const response = await axios
+        .get(`http://localhost:3001/api/notes/${userId}/${backlogId}`)
+        .catch((err) => console.log(err))
+      console.log('UseEffect response: ', response)
+      setUserNotes(response.data.note.noteText)
     }
     getUserNotes()
+    if (userNotes != '') {
+      console.log('useEffect:', hasNotes)
+      setHasNotes(true)
+    }
   }, [userNotes])
 
   const handleNoteCreate = async () => {
@@ -28,30 +33,32 @@ const Notes = ({ backlogId }) => {
     const response = await axios
       .post(`http://localhost:3001/api/notes/${userId}/${backlogId}`, newNote)
       .catch((err) => console.log(err))
-    setUserNotes(noteText)
-    console.log(noteText)
     setNoteId(response.data.note._id)
-    console.log(noteId)
+    setUserNotes(noteText)
+    setHasNotes(true)
+    console.log('note Text: ', noteText)
+    console.log('create note: ', hasNotes)
+    console.log('noteID: ', noteId)
   }
   const handleNoteUpdate = async () => {
-    const response = await axios.put(
-      `http://localhost:3001/api/notes/${noteId}`,
-      { noteText: noteText }
-    )
+    const response = await axios
+      .put(`http://localhost:3001/api/notes/${noteId}`, { noteText: noteText })
+      .catch((err) => console.log(err))
     setUserNotes(noteText)
+    console.log('update note: ', hasNotes)
   }
   const handleChange = (event) => {
     setNoteText(event.target.value)
   }
-
-  return userNotes !== [] ? (
+  console.log('user note:', userNotes)
+  return hasNotes ? (
     <div className="note-wrapper">
       <form onSubmit={handleNoteUpdate}>
         <textarea
           id="note"
           rows="10"
           cols="50"
-          value={userNotes}
+          defaultValue={userNotes}
           onChange={handleChange}
         >
           {userNotes}
@@ -66,7 +73,7 @@ const Notes = ({ backlogId }) => {
           id="note"
           rows="10"
           cols="50"
-          value={noteText}
+          defaultValue={noteText}
           placeholder="Enter Notes Here..."
           onChange={handleChange}
         ></textarea>

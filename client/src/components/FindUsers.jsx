@@ -7,9 +7,7 @@ const FindUsers = ({ backlogId }) => {
 
   useEffect(() => {
     const findUsers = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/api/games/${backlogId}`
-      )
+      const response = await axios.get(`/games/${backlogId}`)
       setSelectedGame(response.data.game.gameUsers)
     }
     findUsers()

@@ -22,17 +22,13 @@ const Home = () => {
   })
   useEffect(() => {
     const getUser = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/api/users/${user.userId}`
-      )
+      const response = await axios.get(`/users/${user.userId}`)
       setUserInfo(response.data.user)
     }
     getUser()
 
     const getUserGames = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/api/users/${user.userId}/games`
-      )
+      const response = await axios.get(`/users/${user.userId}/games`)
       setUserGames(response.data.userGames)
     }
     getUserGames()

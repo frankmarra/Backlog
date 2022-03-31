@@ -19,7 +19,7 @@ const GameDetail = () => {
     }
     getGameDetails()
     const getAllGames = async () => {
-      const response = await axios.get(`http://localhost:3001/api/games`)
+      const response = await axios.get(`/games`)
       setAllGames(response.data.games)
     }
     getAllGames()

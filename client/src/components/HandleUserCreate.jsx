@@ -21,7 +21,7 @@ const HandleUserCreate = ({ userList }) => {
         userName: userName.toLowerCase()
       }
       const response = await axios
-        .post('http://localhost:3001/api/users', newUser)
+        .post('/users', newUser)
         .catch((err) => console.log(err))
       setUserId(response.data.user._id)
       setUserCreated(true)

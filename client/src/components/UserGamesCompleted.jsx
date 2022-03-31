@@ -7,9 +7,7 @@ const UserGamesCompleted = ({ user, showGame }) => {
 
   useEffect(() => {
     const getUserGamesCompleted = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/api/users/${user.userId}/games/completed`
-      )
+      const response = await axios.get(`/users/${user.userId}/games/completed`)
       setUserGamesCompleted(response.data.userGames)
     }
     getUserGamesCompleted()

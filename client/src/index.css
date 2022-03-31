@@ -65,7 +65,7 @@ nav {
   flex-flow: row nowrap;
   justify-content: space-around;
   background-color: #3a3e40;
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 3px 0 rgba(214, 202, 202, 0.5);
 }
 
 nav a {

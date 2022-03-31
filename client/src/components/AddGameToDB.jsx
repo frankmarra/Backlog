@@ -25,7 +25,7 @@ const AddGameToDB = ({ allGames, gameDetails }) => {
         }
 
         const response = await axios
-          .post(`http://localhost:3001/api/games`, newGame)
+          .post(`/games`, newGame)
           .catch((err) => console.log(err))
         console.log('Game Added')
         setBacklogId(response.data.game._id)

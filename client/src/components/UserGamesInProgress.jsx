@@ -8,7 +8,7 @@ const UserGamesInProgress = ({ user, showGame }) => {
   useEffect(() => {
     const getUserGamesInProgress = async () => {
       const response = await axios.get(
-        `http://localhost:3001/api/users/${user.userId}/games/in_progress`
+        `/users/${user.userId}/games/in_progress`
       )
       setUserGamesInProgress(response.data.userGames)
     }

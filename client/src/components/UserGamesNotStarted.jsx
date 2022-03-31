@@ -8,7 +8,7 @@ const UserGamesNotStarted = ({ user, showGame }) => {
   useEffect(() => {
     const getUserGamesNotStarted = async () => {
       const response = await axios.get(
-        `http://localhost:3001/api/users/${user.userId}/games/not_started`
+        `/users/${user.userId}/games/not_started`
       )
       setUserGamesNotStarted(response.data.userGames)
     }

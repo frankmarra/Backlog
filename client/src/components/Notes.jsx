@@ -12,7 +12,7 @@ const Notes = ({ backlogId }) => {
   useEffect(() => {
     const getUserNotes = async () => {
       const response = await axios
-        .get(`http://localhost:3001/api/notes/${userId}/${backlogId}`)
+        .get(`/notes/${userId}/${backlogId}`)
         .catch((err) => console.log(err))
       setUserNotes(response.data.note.noteText)
       setNoteId(response.data.note._id)
@@ -30,7 +30,7 @@ const Notes = ({ backlogId }) => {
       noteText: noteText
     }
     const response = await axios
-      .post(`http://localhost:3001/api/notes/${userId}/${backlogId}`, newNote)
+      .post(`/notes/${userId}/${backlogId}`, newNote)
       .catch((err) => console.log(err))
     setNoteId(response.data.note._id)
     setUserNotes(noteText)
@@ -38,14 +38,14 @@ const Notes = ({ backlogId }) => {
   }
   const handleNoteUpdate = async (event) => {
     const response = await axios
-      .put(`http://localhost:3001/api/notes/${noteId}`, { noteText: noteText })
+      .put(`/notes/${noteId}`, { noteText: noteText })
       .catch((err) => console.log(err))
     setUserNotes(noteText)
   }
 
   const deleteNote = async () => {
     const response = await axios
-      .delete(`http://localhost:3001/api/notes/${noteId}`)
+      .delete(`/notes/${noteId}`)
       .catch((err) => console.log(err))
     setHasNotes(false)
     setUserNotes('')

@@ -10,7 +10,7 @@ const CreateNewUser = ({ allUsers }) => {
 
   useEffect(() => {
     const getAllUsers = async () => {
-      const response = await axios.get(`http://localhost:3001/api/users`)
+      const response = await axios.get(`/users`)
       setUserList(response.data.users)
     }
     getAllUsers()

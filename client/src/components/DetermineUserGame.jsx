@@ -21,15 +21,13 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
   }, [])
 
   const addGameToUser = async () => {
-    axios
-      .put(`http://localhost:3001/api/games/${backlogId}/${userId}`)
-      .catch((err) => console.log(err))
+    axios.put(`/games/${backlogId}/${userId}`).catch((err) => console.log(err))
     setIsUserGame(true)
     setUserStatus('Not Started')
   }
 
   const deleteGameFromUser = async () => {
-    axios.delete(`http://localhost:3001/api/games/${backlogId}/${userId}`)
+    axios.delete(`/games/${backlogId}/${userId}`)
     setIsUserGame(false)
   }
   const handleChange = (event) => {
@@ -40,21 +38,21 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
       console.log('that is already the status.  choose again')
     } else if (choice !== userStatus && choice == 'Not Started') {
       const response = await axios
-        .put(`http://localhost:3001/api/users/${userId}/${backlogId}`, {
+        .put(`/users/${userId}/${backlogId}`, {
           status: 'Not Started'
         })
         .catch((err) => console.log(err))
       setUserStatus('Not Started')
     } else if (choice !== userStatus && choice == 'In Progress') {
       const response = await axios
-        .put(`http://localhost:3001/api/users/${userId}/${backlogId}`, {
+        .put(`/users/${userId}/${backlogId}`, {
           status: 'In Progress'
         })
         .catch((err) => console.log(err))
       setUserStatus('In Progress')
     } else if (choice !== userStatus && choice == 'Completed') {
       const response = await axios
-        .put(`http://localhost:3001/api/users/${userId}/${backlogId}`, {
+        .put(`/users/${userId}/${backlogId}`, {
           status: 'Completed'
         })
         .catch((err) => console.log(err))
@@ -75,9 +73,11 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
             <option value="Completed">Completed</option>
           </select>
         </label>
-        <button onClick={() => updateGameStatus(value)}>Update!</button>
+        <div className="update-status-button">
+          <button onClick={() => updateGameStatus(value)}>Update!</button>
+        </div>
+        <button onClick={() => deleteGameFromUser()}>Delete?</button>
       </div>
-      <button onClick={() => deleteGameFromUser()}>Delete?</button>
       <Notes backlogId={backlogId} />
     </div>
   ) : (

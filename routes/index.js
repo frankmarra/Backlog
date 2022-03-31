@@ -24,7 +24,7 @@ router.get(
   userControllers.getAllUserGamesInProgress
 )
 router.get(
-  'users/:userId/games/completed',
+  '/users/:userId/games/completed',
   userControllers.getAllUserGamesCompleted
 )
 

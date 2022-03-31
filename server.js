@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json())
 app.use(logger('dev'))
 
-app.use('/api', routes)
+app.use('/', routes)
 
 app.listen(PORT, () => {
   console.log(`Express listening on port ${PORT}`)

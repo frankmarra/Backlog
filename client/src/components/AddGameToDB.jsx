@@ -5,7 +5,7 @@ import FindUsers from './FindUsers'
 
 const AddGameToDB = ({ allGames, gameDetails }) => {
   const [backlogId, setBacklogId] = useState(null)
-  let { userId, gameId } = useParams()
+  let { gameId } = useParams()
   useEffect(() => {
     const addGame = async () => {
       let foundGame = 0
@@ -25,7 +25,7 @@ const AddGameToDB = ({ allGames, gameDetails }) => {
         }
 
         const response = await axios
-          .post(`http://localhost:3001/api/games`, newGame)
+          .post(`/games`, newGame)
           .catch((err) => console.log(err))
         console.log('Game Added')
         setBacklogId(response.data.game._id)

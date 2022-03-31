@@ -119,7 +119,7 @@ const getAllUserGamesCompleted = async (req, res) => {
       })
     })
     if (userGames) {
-      return res.status(200).json({ userGame })
+      return res.status(200).json({ userGames })
     }
     return res.status(404).send('You have not completed any games.')
   } catch (error) {

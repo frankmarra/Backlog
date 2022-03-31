@@ -9,16 +9,12 @@ const AddGameToDB = ({ allGames, gameDetails }) => {
   useEffect(() => {
     const addGame = async () => {
       let foundGame = 0
-      console.log(allGames)
-      console.log('gameId: ', gameId)
       allGames.forEach((game) => {
         if (game.gameDataId == gameId) {
           foundGame++
           setBacklogId(game._id)
         }
       })
-      console.log('game: ', foundGame)
-      console.log('user ID: ', userId)
       if (foundGame === 0) {
         const newGame = {
           gameName: gameDetails.name,

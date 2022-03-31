@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import Notes from './Notes'
 
 const DetermineUserGame = ({ selectedGame, backlogId }) => {
   const [isUserGame, setIsUserGame] = useState(false)
@@ -31,8 +32,8 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
     axios.delete(`http://localhost:3001/api/games/${backlogId}/${userId}`)
     setIsUserGame(false)
   }
-  const handleChange = (e) => {
-    setValue(e.target.value)
+  const handleChange = (event) => {
+    setValue(event.target.value)
   }
   const updateGameStatus = async (choice) => {
     if (choice == userStatus) {
@@ -77,6 +78,7 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
         <button onClick={() => updateGameStatus(value)}>Update!</button>
       </div>
       <button onClick={() => deleteGameFromUser()}>Delete?</button>
+      <Notes backlogId={backlogId} />
     </div>
   ) : (
     <div className="crud-buttons" onClick={() => addGameToUser()}>

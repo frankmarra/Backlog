@@ -58,14 +58,22 @@ nav a {
   grid-row: 2 / 3;
 } */
 
-.search-results-wrapper {
+.search-results-wrapper,
+.in-progress-wrapper,
+.not-started-wrapper,
+.completed-wrapper {
   margin-top: 20px;
   display: grid;
   width: 90%;
   grid-column: 1 / -1;
   grid-template-columns: inherit;
+  text-align: center;
 }
-.search-results {
+
+.search-results,
+.in-progress,
+.not-started,
+.completed {
   overflow-x: scroll;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
@@ -74,23 +82,7 @@ nav a {
   display: flex;
   justify-content: flex-start;
 }
-.in-progress-wrapper {
-  margin: 20px;
-  display: grid;
-  width: 90%;
-  grid-column: 1 / -1;
-  grid-template-columns: inherit;
-}
-.in-progress {
-  overflow-x: scroll;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scroll-snap-align: start;
-  scroll-behavior: smooth;
-  /* height: 250px; */
-  display: flex;
-  justify-content: flex-start;
-}
+
 .game-card {
   border-radius: 6px;
   display: flex;

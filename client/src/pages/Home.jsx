@@ -3,7 +3,9 @@ import axios from 'axios'
 import GameCard from '../components/GameCard'
 import UserInfo from '../components/UserInfo'
 import Search from '../components/Search'
-// import SearchResults from '../components/SearchResults'
+import UserGamesInProgress from '../components/UserGamesInProgress'
+import UserGamesNotStarted from '../components/UserGamesNotStarted'
+import UserGamesCompleted from '../components/UserGamesCompleted'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { rawGKey } from '../globals'
@@ -52,11 +54,40 @@ const Home = () => {
   const showGame = (gameId) => {
     navigate(`/users/${user.userId}/games/${gameId}`)
   }
+  // <h3>Games In Progress</h3>
+  // <div className="in-progress-wrapper">
+  //   <div className="in-progress">
+  //     {userGames.map((game) => (
+  //       <div key={game.gameDataId}>
+  //         <GameCard
+  //           id={game.gameDataId}
+  //           name={game.gameName}
+  //           image={game.gameBackgroundImage}
+  //           showGame={showGame}
+  //         />
+  //       </div>
+  //     ))}
+  //   </div>
+  // </div>
+  // <div className="not-started-wrapper">
+  //   <div className="not-started">
+  //     {userGamesNotStarted.map((game) => (
+  //       <div key={game.gameDataId}>
+  //         <GameCard
+  //           id={game.gameDataId}
+  //           name={game.gameName}
+  //           image={game.gameBackgroundImage}
+  //           showGame={showGame}
+  //         />
+  //       </div>
+  //     ))}
+  //   </div>
+  // </div>
   return (
     <div>
       <section className="container">
         <div className="content">
-          <UserInfo userInfo={userInfo} userGames={userGames} />
+          <UserInfo userInfo={userInfo} userGames={userGames} user={user} />
           <Search
             onChange={handleChange}
             value={searchQuery}
@@ -76,21 +107,9 @@ const Home = () => {
               ))}
             </div>
           </div>
-          <h3>Games In Progress</h3>
-          <div className="in-progress-wrapper">
-            <div className="in-progress">
-              {userGames.map((game) => (
-                <div key={game.gameDataId}>
-                  <GameCard
-                    id={game.gameDataId}
-                    name={game.gameName}
-                    image={game.gameBackgroundImage}
-                    showGame={showGame}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <UserGamesInProgress user={user} showGame={showGame} />
+          <UserGamesNotStarted user={user} showGame={showGame} />
+          <UserGamesCompleted user={user} showGame={showGame} />
         </div>
       </section>
     </div>

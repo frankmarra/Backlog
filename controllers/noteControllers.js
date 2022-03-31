@@ -27,18 +27,13 @@ const updateNote = async (req, res) => {
 const getNotesByGame = async (req, res) => {
   try {
     const notes = await Note.find()
-    let gameNotes = []
     notes.forEach((note) => {
       if (note.user == req.params.userId && note.game == req.params.gameId) {
-        gameNotes.push(note)
+        return res.status(200).json({ note })
       }
     })
-    if (gameNotes) {
-      return res.status(200).json({ gameNotes })
-    }
-    return res.status(404).send('Notes for this game do not exist')
   } catch (error) {
-    return res.status(500).send(error.message)
+    res.status(500).send(error.message)
   }
 }
 

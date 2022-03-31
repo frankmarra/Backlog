@@ -67,10 +67,73 @@ const getAllUserGames = async (req, res) => {
   }
 }
 
+const getAllUserGamesNotStarted = async (req, res) => {
+  try {
+    const games = await Game.find()
+    let userGames = []
+    games.forEach((game) => {
+      game.gameUsers.forEach((user) => {
+        if (user.user == req.params.userId && user.status == 'Not Started') {
+          userGames.push(game)
+        }
+      })
+    })
+    if (userGames) {
+      return res.status(200).json({ userGames })
+    }
+    return res.status(404).send('You have no games that have not been started.')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const getAllUserGamesInProgress = async (req, res) => {
+  try {
+    const games = await Game.find()
+    let userGames = []
+    games.forEach((game) => {
+      game.gameUsers.forEach((user) => {
+        if (user.user == req.params.userId && user.status == 'In Progress') {
+          userGames.push(game)
+        }
+      })
+    })
+    if (userGames) {
+      return res.status(200).json({ userGames })
+    }
+    return res.status(404).send('You have not games in porgress')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const getAllUserGamesCompleted = async (req, res) => {
+  try {
+    const games = await Game.find()
+    let userGames = []
+    games.forEach((game) => {
+      game.gameUsers.forEach((user) => {
+        if (user.user == req.params.userId && user.status == 'Completed') {
+          userGames.push(game)
+        }
+      })
+    })
+    if (userGames) {
+      return res.status(200).json({ userGame })
+    }
+    return res.status(404).send('You have not completed any games.')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
   createUser,
   getUser,
   getAllUsers,
   updateUserGameStatus,
-  getAllUserGames
+  getAllUserGames,
+  getAllUserGamesNotStarted,
+  getAllUserGamesInProgress,
+  getAllUserGamesCompleted
 }

@@ -84,7 +84,7 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
     </div>
   ) : (
     <div className="crud-buttons" onClick={() => addGameToUser()}>
-      <button>Add To Your Backlog!</button>
+      <button className="add-to-backlog-button">Add To Your Backlog!</button>
     </div>
   )
 }

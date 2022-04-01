@@ -15,7 +15,6 @@ const UserGamesCompleted = ({ user, showGame }) => {
 
   return (
     <div className="completed-wrapper">
-      <h3>Games Completed</h3>
       <div className="completed">
         {userGamesCompleted.map((game) => (
           <GameCard

@@ -75,8 +75,11 @@ const Home = () => {
               ))}
             </div>
           </div>
+          <h3>Games In Progress</h3>
           <UserGamesInProgress user={user} showGame={showGame} />
+          <h3>Games Not Started</h3>
           <UserGamesNotStarted user={user} showGame={showGame} />
+          <h3>Games Completed</h3>
           <UserGamesCompleted user={user} showGame={showGame} />
         </div>
       </section>

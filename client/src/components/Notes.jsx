@@ -66,9 +66,12 @@ const Notes = ({ backlogId }) => {
         >
           {userNotes}
         </textarea>
-        <button type="submit">Save Note</button>
+        <button className="save-note-button" type="submit">
+          Save Note
+        </button>
       </form>
       <button
+        className="delete-note-button"
         onClick={() => {
           deleteNote()
         }}
@@ -87,7 +90,9 @@ const Notes = ({ backlogId }) => {
           placeholder="Enter Notes Here..."
           onChange={handleChange}
         ></textarea>
-        <button type="submit">Create Note</button>
+        <button className="create-note-button" type="submit">
+          Create Note
+        </button>
       </form>
     </div>
   )

@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { rawGKey } from '../globals'
 import AddGameToDB from './AddGameToDB'
+import { Link } from 'react-router-dom'
 
 const GameDetail = () => {
   const [gameDetails, setGameDetails] = useState(null)
   const [allGames, setAllGames] = useState([])
 
-  let { gameId } = useParams()
+  let { userId, gameId } = useParams()
 
   useEffect(() => {
     const getGameDetails = async () => {
@@ -38,6 +39,9 @@ const GameDetail = () => {
           <p>{gameDetails.description_raw}</p>
         </div>
         <AddGameToDB allGames={allGames} gameDetails={gameDetails} />
+        <Link to={`/users/${userId}`} className="back-button">
+          Back
+        </Link>
       </div>
     )
   )

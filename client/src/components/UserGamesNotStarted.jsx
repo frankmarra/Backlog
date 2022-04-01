@@ -17,17 +17,16 @@ const UserGamesNotStarted = ({ user, showGame }) => {
 
   return (
     <div className="not-started-wrapper">
-      <h2>Games Not Started</h2>
+      <h3>Games Not Started</h3>
       <div className="not-started">
         {userGamesNotStarted.map((game) => (
-          <div key={game.gameDataId}>
-            <GameCard
-              id={game.gameDataId}
-              name={game.gameName}
-              image={game.gameBackgroundImage}
-              showGame={showGame}
-            />
-          </div>
+          <GameCard
+            key={game.gameDataId}
+            id={game.gameDataId}
+            name={game.gameName}
+            image={game.gameBackgroundImage}
+            showGame={showGame}
+          />
         ))}
       </div>
     </div>

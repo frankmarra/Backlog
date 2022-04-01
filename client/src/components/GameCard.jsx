@@ -4,7 +4,7 @@ const GameCard = ({ image, name, showGame, id }) => {
       <div className="img-wrapper">
         <img src={image} alt={name} />
       </div>
-      <div className="info-wrapper">
+      <div className="game-info-wrapper">
         <h3>{name}</h3>
       </div>
     </div>

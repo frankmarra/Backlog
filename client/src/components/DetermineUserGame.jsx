@@ -63,10 +63,13 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
   return isUserGame ? (
     <div className="crud-buttons">
       <h4>This game is in your library!</h4>
+      <button className="remove-button" onClick={() => deleteGameFromUser()}>
+        Remove from library
+      </button>
       <p>Game Status: {userStatus}</p>
       <div className="drop-down-menu">
         <label>
-          Update Status?
+          Level Up:
           <select value={value} onChange={handleChange}>
             <option value="Not Started">Not Started</option>
             <option value="In Progress">In Progress</option>
@@ -74,9 +77,8 @@ const DetermineUserGame = ({ selectedGame, backlogId }) => {
           </select>
         </label>
         <div className="update-status-button">
-          <button onClick={() => updateGameStatus(value)}>Update!</button>
+          <button onClick={() => updateGameStatus(value)}>Save Status</button>
         </div>
-        <button onClick={() => deleteGameFromUser()}>Delete?</button>
       </div>
       <Notes backlogId={backlogId} />
     </div>

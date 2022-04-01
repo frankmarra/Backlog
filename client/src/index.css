@@ -131,6 +131,11 @@ nav a {
   font-size: 10px;
   line-height: 20px;
   transition: 0.3s;
+  width: 200px;
+}
+
+.game-info-wrapper h3 {
+  overflow: auto;
 }
 
 .game-card:hover {

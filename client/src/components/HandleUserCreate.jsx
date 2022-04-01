@@ -10,6 +10,9 @@ const HandleUserCreate = ({ userList }) => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault()
+    if (userName === '') {
+      alert('You must input a user name.')
+    }
     let foundUser = 0
     userList.forEach((user) => {
       if (user.userName == userName.toLowerCase()) {
@@ -25,6 +28,10 @@ const HandleUserCreate = ({ userList }) => {
         .catch((err) => console.log(err))
       setUserId(response.data.user._id)
       setUserCreated(true)
+    } else {
+      alert(
+        'There is already a user with that name.  Please pick a different name.'
+      )
     }
   }
   const handleUserNameChange = (event) => {

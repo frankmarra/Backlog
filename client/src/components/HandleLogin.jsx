@@ -11,7 +11,7 @@ const HandleLogin = ({ userList }) => {
 
   const handleOnSubmit = async (event) => {
     if (userName === '') {
-      console.log('please enter a user name')
+      alert('please enter a user name.')
     }
     event.preventDefault()
     userList.forEach((user) => {

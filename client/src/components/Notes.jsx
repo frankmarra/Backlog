@@ -89,7 +89,9 @@ const Notes = ({ backlogId }) => {
           placeholder="Enter Notes Here..."
           onChange={handleChange}
         ></textarea>
-        <button type="submit">Create Note</button>
+        <button className="create-note-button" type="submit">
+          Create Note
+        </button>
       </form>
     </div>
   )

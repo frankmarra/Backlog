@@ -1,6 +1,6 @@
 const Search = ({ onSubmit, onChange, value }) => {
   return (
-    <form onSubmit={onSubmit}>
+    <form className="game-search" onSubmit={onSubmit}>
       <input
         type="text"
         name="search"
@@ -8,7 +8,9 @@ const Search = ({ onSubmit, onChange, value }) => {
         placeholder="Search Games"
         onChange={onChange}
       />
-      <button type="submit">Submit</button>
+      <button className="game-search-button" type="submit">
+        Submit
+      </button>
     </form>
   )
 }

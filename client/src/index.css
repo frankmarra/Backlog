@@ -130,10 +130,12 @@ nav a {
   color: #d9d9d9;
   font-size: 10px;
   line-height: 20px;
+  transition: 0.3s;
 }
 
 .game-card:hover {
   box-shadow: 0 0 5px 5px rgba(214, 202, 202, 0.5);
+  transform: scale(1.1);
 }
 
 .img-wrapper img {
@@ -167,7 +169,10 @@ nav a {
 .user-info h3 {
   text-transform: capitalize;
 }
-
+.game-search input {
+  border: none;
+  font-size: 1em;
+}
 .crud-buttons {
   grid-column: 2;
   text-align: center;
@@ -177,7 +182,9 @@ nav a {
   font-size: 14px;
 }
 .update-status-button button,
-.save-note-button {
+.save-note-button,
+.game-search-button,
+.create-note-button {
   font-family: 'Press Start 2P';
   border: none;
   border-radius: 6px;
@@ -187,13 +194,21 @@ nav a {
   padding: 8px;
 }
 .update-status-button button:hover,
-.save-note-button:hover {
+.save-note-button:hover,
+.game-search-button:hover,
+.create-note-button:hover {
   background-color: #979fa6;
   color: #0d0d0d;
 }
 select {
   font-size: 16px;
   margin: 0 10px 20px;
+  cursor: pointer;
+  appearance: button;
+  border: none;
+  background-color: #0d0d0d;
+  color: #d9d9d9;
+  font-family: 'Press Start 2P';
 }
 .drop-down-menu {
   display: flex;
@@ -207,6 +222,10 @@ select {
   text-decoration: none;
   color: #d9d9d9;
   font-size: 1.5rem;
+}
+
+.game-info p {
+  line-height: 20px;
 }
 
 .note-wrapper {
@@ -223,7 +242,8 @@ select {
   height: 20px;
 }
 
-.save-note-button {
+.save-note-button,
+.create-note-button {
   margin: 10px;
   padding-bottom: 20px;
 }

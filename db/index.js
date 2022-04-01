@@ -7,7 +7,7 @@ let dbUrl =
     : 'mongodb://127.0.0.1:27017/backlogDatabase'
 
 mongoose
-  .connect('dbUrl')
+  .connect(dbUrl)
   .then(() => {
     console.log('Successfully connected to MongoDB.')
   })

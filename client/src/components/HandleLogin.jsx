@@ -27,7 +27,9 @@ const HandleLogin = ({ userList }) => {
         Username:
         <input onChange={handleUserNameChange} type="text" name="username" />
       </label>
-      <button type="submit">Login!</button>
+      <button className="login-button" type="submit">
+        Login!
+      </button>
     </form>
   )
 }

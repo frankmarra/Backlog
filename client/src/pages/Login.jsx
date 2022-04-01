@@ -25,7 +25,12 @@ const Login = () => {
         <HandleLogin userList={userList} />
       </div>
       <h3>Need to create an account?</h3>
-      <button onClick={() => navigate(`/create_account`)}>Click Here!</button>
+      <button
+        className="click-here-button"
+        onClick={() => navigate(`/create_account`)}
+      >
+        Click Here!
+      </button>
     </div>
   )
 }

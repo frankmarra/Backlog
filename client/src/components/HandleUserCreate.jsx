@@ -50,7 +50,9 @@ const HandleUserCreate = ({ userList }) => {
       <div>
         <label>Choose a user name:</label>
         <input type="text" name="name" onChange={handleUserNameChange} />
-        <button type="submit">Create!</button>
+        <button className="create-user-button" type="submit">
+          Create!
+        </button>
       </div>
     </form>
   )

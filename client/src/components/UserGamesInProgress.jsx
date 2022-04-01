@@ -17,7 +17,6 @@ const UserGamesInProgress = ({ user, showGame }) => {
 
   return (
     <div className="in-progress-wrapper">
-      <h3>Games In Progress</h3>
       <div className="in-progress">
         {userGamesInProgress.map((game) => (
           <GameCard

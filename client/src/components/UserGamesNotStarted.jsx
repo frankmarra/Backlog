@@ -17,7 +17,6 @@ const UserGamesNotStarted = ({ user, showGame }) => {
 
   return (
     <div className="not-started-wrapper">
-      <h3>Games Not Started</h3>
       <div className="not-started">
         {userGamesNotStarted.map((game) => (
           <GameCard

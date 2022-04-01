@@ -15,17 +15,16 @@ const UserGamesCompleted = ({ user, showGame }) => {
 
   return (
     <div className="completed-wrapper">
-      <h2>Games Completed</h2>
+      <h3>Games Completed</h3>
       <div className="completed">
         {userGamesCompleted.map((game) => (
-          <div key={game.gameDataId}>
-            <GameCard
-              id={game.gameDataId}
-              name={game.gameName}
-              image={game.gameBackgroundImage}
-              showGame={showGame}
-            />
-          </div>
+          <GameCard
+            key={game.gameDataId}
+            id={game.gameDataId}
+            name={game.gameName}
+            image={game.gameBackgroundImage}
+            showGame={showGame}
+          />
         ))}
       </div>
     </div>

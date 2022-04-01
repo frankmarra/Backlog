@@ -66,7 +66,9 @@ const Notes = ({ backlogId }) => {
         >
           {userNotes}
         </textarea>
-        <button type="submit">Save Note</button>
+        <button className="save-note-button" type="submit">
+          Save Note
+        </button>
       </form>
       <button
         onClick={() => {

@@ -84,6 +84,10 @@ nav a {
   margin-top: 30px;
   padding: 0 50px;
   text-align: center;
+  align-items: center;
+}
+.about p {
+  width: 60%;
 }
 .user-info-wrapper {
   text-align: center;
@@ -117,6 +121,7 @@ nav a {
   scroll-behavior: smooth;
   display: flex;
   justify-content: flex-start;
+  padding: 20px 0;
 }
 
 .game-card {

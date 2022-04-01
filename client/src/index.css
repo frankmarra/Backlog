@@ -86,11 +86,10 @@ nav a {
   text-align: center;
 }
 .user-info-wrapper {
-  display: grid;
-  grid-template-columns: 200px 1fr;
+  text-align: center;
   width: 60%;
-  justify-items: center;
   grid-column: 2 / 3;
+  line-height: 20px;
 }
 
 .search-results-wrapper,

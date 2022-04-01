@@ -11,19 +11,14 @@ const HandleLogin = ({ userList }) => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault()
-    let foundName = 0
     if (userName === '') {
       alert('please enter a user name.')
     }
     userList.forEach((user) => {
       if (user.userName === userName.toLowerCase()) {
         navigate(`/users/${user._id}`)
-        foundName++
       }
     })
-    if (foundName === 0) {
-      alert('User name not found.  Please create an account.')
-    }
   }
 
   return (

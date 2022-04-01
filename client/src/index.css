@@ -177,14 +177,22 @@ nav a {
   grid-column: 2;
   text-align: center;
 }
-
-.remove-button {
-  font-size: 14px;
+.back-button {
+  grid-row: 2 / 3;
 }
+.delete-note-button:hover,
+.remove-button:hover {
+  color: #0d0d0d;
+  background-color: #973b3b;
+}
+
 .update-status-button button,
 .save-note-button,
 .game-search-button,
-.create-note-button {
+.create-note-button,
+.delete-note-button,
+.remove-button,
+.back-button {
   font-family: 'Press Start 2P';
   border: none;
   border-radius: 6px;
@@ -196,7 +204,8 @@ nav a {
 .update-status-button button:hover,
 .save-note-button:hover,
 .game-search-button:hover,
-.create-note-button:hover {
+.create-note-button:hover,
+.back-button:hover {
   background-color: #979fa6;
   color: #0d0d0d;
 }
@@ -238,14 +247,10 @@ select {
   align-items: center;
 }
 
-.note-wrapper form button {
-  height: 20px;
-}
-
 .save-note-button,
-.create-note-button {
+.create-note-button,
+.delete-note-button {
   margin: 10px;
-  padding-bottom: 20px;
 }
 
 @media (max-width: 1100px) {

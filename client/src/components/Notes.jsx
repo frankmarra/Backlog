@@ -71,6 +71,7 @@ const Notes = ({ backlogId }) => {
         </button>
       </form>
       <button
+        className="delete-note-button"
         onClick={() => {
           deleteNote()
         }}

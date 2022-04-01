@@ -34,15 +34,15 @@
 
 #### To get started, please create a user name to store your backlog in. Click on the create user button and follow the prompts.
 
-![Image](./Images/Screen Shot 2022-03-31 at 6.43.28 PM.png)
+![image](./Images/Screen%20Shot%202022-03-31%20at%206.43.28%20PM.png)
 
 #### From there, you will be taken to your Backlog, where you can start searching for games to add. When you find the game you are looking for, click on the card to go to the game details page. You can now click on the button to add this game to your Backlog. Games added will default to the 'Not Started' status, but you can update this by clicking on the drop down next to 'Level Up'.
 
-![Image](./Images/Screen Shot 2022-04-01 at 10.32.48 AM.png)
+![image](./Images/Screen%20Shot%202022-04-01%20at%2010.32.48%20AM.png)
 
 #### You can now go back to your Backlog and see that this game is either on your 'Not Started' shelf, or whatever status you set the game to. You can continue to add games to build your Backlog.
 
-![Image](./Images/Screen Shot 2022-04-01 at 10.33.07 AM.png)
+![image](./Images/Screen%20Shot%202022-04-01%20at%2010.33.07%20AM.png)
 
 #### Clicking on a game card on one of your shelves will bring you back to the game detail screen. You can update the status of the game, or add notes in the text area, just make sure you save what you do.
 

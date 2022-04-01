@@ -17,6 +17,8 @@ const HandleLogin = ({ userList }) => {
     userList.forEach((user) => {
       if (user.userName === userName.toLowerCase()) {
         navigate(`/users/${user._id}`)
+      } else {
+        alert('User name does not exist.')
       }
     })
   }

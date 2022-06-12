@@ -2,11 +2,13 @@ const { Router } = require('express')
 const gameControllers = require('../controllers/gameController')
 const userControllers = require('../controllers/userControllers')
 const noteControllers = require('../controllers/noteControllers')
+const authControllers = require('../controllers/AuthController')
 const router = Router()
 
 router.get('/', (req, res) => res.send('This is the root'))
 
-router.post('/users', userControllers.createUser)
+router.post('/users', authControllers.Register)
+router.post('/users/login', authControllers.Login)
 
 router.get('/users', userControllers.getAllUsers)
 

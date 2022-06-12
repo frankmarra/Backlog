@@ -4,7 +4,7 @@ require('dotenv').config()
 let dbUrl =
   process.env.NODE_ENV === 'production'
     ? process.env.MONGODB_URI
-    : 'mongodb://127.0.0.1:27017/<database_name>'
+    : 'mongodb://127.0.0.1:27017/backlog_db_v2'
 
 mongoose
   .connect(dbUrl)

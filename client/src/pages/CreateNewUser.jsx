@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import HandleUserCreate from '../components/HandleUserCreate'
 
-const CreateNewUser = ({ allUsers }) => {
+const CreateNewUser = () => {
   const [userList, setUserList] = useState([])
   useEffect(() => {
     document.title = 'Backlog Create User'
-  })
+  }, [])
 
   useEffect(() => {
     const getAllUsers = async () => {
